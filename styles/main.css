@@ -1,0 +1,15 @@
+@import "detail.css";
+
+
+ul {
+    list-style-type: none;
+
+}
+
+#orderButton {
+    margin: 1rem 0 2rem 2rem;
+    padding: 0.5rem;
+    background-color: rgb(227, 199, 72);
+    color: rgb(59, 59, 53);
+    font-size: 1rem;
+}
