@@ -16,12 +16,15 @@ document.addEventListener(
 
 export const Wheels = () => {
     let html = "<ul>"
-    for (const wheel of wheels) {
-        html += `<li>
-            <input type="radio" name="wheel" value = "${wheel.id}" /> ${wheel.wheelType}
-        </li>`
-    }
 
+    const listedItems = wheels.map(wheel => {
+        return `<li>
+            <input type="radio" name="wheel" value="${wheel.id}" /> ${wheel.wheelType}
+        </li>`
+    })
+
+    html += listedItems.join("")
     html += "</ul>"
+
     return html
 }

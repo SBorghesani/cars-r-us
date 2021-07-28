@@ -24,7 +24,7 @@ const database = {
         {id: 4, wheelType: "18-inch pair spoke black", price: 399.99}
     ],
     customOrders: [
-        {}
+
     ],
     orderBuilder: {}
 }
@@ -50,7 +50,7 @@ export const getOrders = () => {
 }
 
 export const setPaintColor = (id) => {
-    database.orderBuilder.paintColorId = id
+    database.orderBuilder.paintId = id
 }
 
 export const setInterior = (id) => {
@@ -67,8 +67,14 @@ export const setWheel = (id) => {
 
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
-    const lastIndex = database.customOrders.length - 1
-    newOrder.id = database.customOrders[lastIndex].id + 1 //this may be a problem as the index will start at -1
+    let lastIndex = null
+    if (database.customOrders.length === 0) {
+        lastIndex = 0
+        newOrder.id = lastIndex + 1
+    } else {
+        const lastIndex = database.customOrders.length - 1
+        newOrder.id = database.customOrders[lastIndex].id + 1 
+    }
     newOrder.timestamp = Date.now()
     database.customOrders.push(newOrder)
     database.orderBuilder = {}

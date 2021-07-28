@@ -18,12 +18,14 @@ document.addEventListener(
 export const Technologies = () => {
     let html = "<ul>"
 
-    for (const technology of technologies) {
-        html += `<li>
+    const listedItems = technologies.map(technology => {
+        return `<li>
             <input type="radio" name="technology" value="${technology.id}" /> ${technology.packageType}
         </li>`
-    }
+    })
 
+    html += listedItems.join("")
     html += "</ul>"
+
     return html
 }
