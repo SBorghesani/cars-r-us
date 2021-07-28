@@ -45,6 +45,10 @@ export const getWheels = () => {
     return database.wheels.map(wheel => ({...wheel}))
 }
 
+export const getOrders = () => {
+    return database.customOrders.map(order => ({...order}))
+}
+
 export const setPaintColor = (id) => {
     database.orderBuilder.paintColorId = id
 }

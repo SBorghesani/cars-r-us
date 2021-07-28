@@ -18,12 +18,14 @@ document.addEventListener(
 export const Interiors = () => {
     let html = "<ul>"
 
-    for (const interior of interiors) {
-        html += `<li>
+    const listedItems = interiors.map(interior => {
+        return `<li>
             <input type="radio" name="interior" value="${interior.id}" /> ${interior.interiorColor}
         </li>`
-    }
+    })
 
-    html += "<ul>"
+    html += listedItems.join("")
+    html += "</ul>"
+
     return html
 }
