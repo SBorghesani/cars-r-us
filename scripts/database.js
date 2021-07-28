@@ -1,5 +1,5 @@
 const database = {
-    paintColor: [
+    paintColors: [
         {id: 1, paintColor: "silver", price: 299.99},
         {id: 2, paintColor: "midnight blue", price: 499.99},
         {id: 3, paintColor: "firebrick red", price: 599.99},
@@ -24,7 +24,7 @@ const database = {
         {id: 4, wheelType: "18-inch pair spoke black", price: 399.99}
     ],
     customOrders: [
-        {}
+
     ],
     orderBuilder: {}
 }
@@ -37,16 +37,20 @@ export const getInteriors = () => {
     return database.interiors.map(interior => ({...interior}))
 }
 
-export const technologies = () => {
+export const getTechnologies = () => {
     return database.technologies.map(technology => ({...technology}))
 }
 
-export const wheels = () => {
+export const getWheels = () => {
     return database.wheels.map(wheel => ({...wheel}))
 }
 
+export const getOrders = () => {
+    return database.customOrders.map(order => ({...order}))
+}
+
 export const setPaintColor = (id) => {
-    database.orderBuilder.paintColorId = id
+    database.orderBuilder.paintId = id
 }
 
 export const setInterior = (id) => {
@@ -63,8 +67,14 @@ export const setWheel = (id) => {
 
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
-    const lastIndex = database.customOrders.length - 1
-    newOrder.id = database.customOrders[lastIndex].id + 1 //this may be a problem as the index will start at -1
+    let lastIndex = null
+    if (database.customOrders.length === 0) {
+        lastIndex = 0
+        newOrder.id = lastIndex + 1
+    } else {
+        const lastIndex = database.customOrders.length - 1
+        newOrder.id = database.customOrders[lastIndex].id + 1 
+    }
     newOrder.timestamp = Date.now()
     database.customOrders.push(newOrder)
     database.orderBuilder = {}
