@@ -1,8 +1,14 @@
 @import "detail.css";
 
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 ul {
     list-style-type: none;
+    padding-inline-start: 2em;
 
 }
 

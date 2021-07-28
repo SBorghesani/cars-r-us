@@ -11,6 +11,7 @@ document.addEventListener(
         const itemClicked = event.target
         if (itemClicked.id.startsWith("orderButton")) {
             addCustomOrder()
+            
         }
 
     }
