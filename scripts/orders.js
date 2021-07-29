@@ -1,32 +1,35 @@
-import { getOrders, getPaintColors, getInteriors, getTechnologies, getWheels } from "./database.js"
+import { getOrders, getPaintColors, getInteriors, getTechnologies, getWheels, getVehicleOptions } from "./database.js"
 const paints = getPaintColors()
 const interiors = getInteriors()
 const technologies = getTechnologies()
 const wheels = getWheels()
+const vehicleOptions = getVehicleOptions()
 
 const buildOrder = (order) => {
     const foundPaint = paints.find(
         (paint) => {
             return paint.id === order.paintId
+        })
+    const foundInterior = interiors.find(
+        (interior) => {
+            return interior.id === order.interiorId
+        })
+    const foundTechnology = technologies.find(
+        (technology) => {
+            return technology.id === order.technologyId
+        })
+    const foundWheel = wheels.find(
+        (wheel) => {
+            return wheel.id === order.wheelId
+        })
+
+    const foundVehicleOption = vehicleOptions.find(
+        (vehicleOption) => {
+            return vehicleOption.id === order.vehicleOptionId
         }
-        )
-        const foundInterior = interiors.find(
-            (interior) => {
-                return interior.id === order.interiorId
-            }
-            )
-            const foundTechnology = technologies.find(
-                (technology) => {
-                    return technology.id === order.technologyId
-                }
-                )
-                const foundWheel = wheels.find(
-                    (wheel) => {
-                        return wheel.id === order.wheelId
-                    }
-                    )
+    )
         try {
-        const totalCost = foundPaint.price + foundInterior.price + foundTechnology.price + foundWheel.price 
+        const totalCost = (foundPaint.price + foundInterior.price + foundTechnology.price + foundWheel.price) * foundVehicleOption.modifier
         const costOutput = totalCost.toLocaleString("en-US", {
             style: "currency",
             currency: "USD" 
