@@ -9,32 +9,37 @@ const buildOrder = (order) => {
         (paint) => {
             return paint.id === order.paintId
         }
-    )
-    const foundInterior = interiors.find(
-        (interior) => {
-            return interior.id === order.interiorId
+        )
+        const foundInterior = interiors.find(
+            (interior) => {
+                return interior.id === order.interiorId
+            }
+            )
+            const foundTechnology = technologies.find(
+                (technology) => {
+                    return technology.id === order.technologyId
+                }
+                )
+                const foundWheel = wheels.find(
+                    (wheel) => {
+                        return wheel.id === order.wheelId
+                    }
+                    )
+        try {
+        const totalCost = foundPaint.price + foundInterior.price + foundTechnology.price + foundWheel.price 
+        const costOutput = totalCost.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD" 
+        })
+        return `<li>
+            Order #${order.id} cost: ${costOutput} was placed on ${order.timestamp}
+        </li>`
         }
-    )
-    const foundTechnology = technologies.find(
-        (technology) => {
-            return technology.id === order.technologyId
+        catch(err) {
+            window.alert("You must select an option from each table. Please try again.")
+            location.reload()
         }
-    )
-    const foundWheel = wheels.find(
-        (wheel) => {
-            return wheel.id === order.wheelId
-        }
-    )
 
-    const totalCost = foundPaint.price + foundInterior.price + foundTechnology.price + foundWheel.price
-    const costOutput = totalCost.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD"
-    })
-
-    return `<li>
-        Order #${order.id} cost: ${costOutput} was placed on ${order.timestamp}
-    </li>`
 }
 
 
