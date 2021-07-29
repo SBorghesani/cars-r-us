@@ -23,6 +23,11 @@ const database = {
         {id: 3, wheelType: "18-inch pair spoke silver", price: 399.99},
         {id: 4, wheelType: "18-inch pair spoke black", price: 399.99}
     ],
+    vehicleOptions: [
+        {id: 1, vehicleType: "Car", modifier: 1},
+        {id: 2, vehicleType: "SUV", modifier: 1.5},
+        {id: 3, vehicleType: "Truck", modifier: 2.25}
+    ],
     customOrders: [
 
     ],
@@ -45,6 +50,10 @@ export const getWheels = () => {
     return database.wheels.map(wheel => ({...wheel}))
 }
 
+export const getVehicleOptions = () => {
+    return database.vehicleOptions.map(vehicleOption => ({...vehicleOption}))
+}
+
 export const getOrders = () => {
     return database.customOrders.map(order => ({...order}))
 }
@@ -64,6 +73,11 @@ export const setTechnology = (id) => {
 export const setWheel = (id) => {
     database.orderBuilder.wheelId = id
 }
+
+export const setVehicleOption = (id) => {
+    database.orderBuilder.vehicleOptionId = id
+}
+
 
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
