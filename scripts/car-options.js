@@ -15,10 +15,10 @@ document.addEventListener(
 
 
 export const VehicleOptions = () => {
-    let html = "<ul>"
+    let html = "<ul class='vehicleOptions'>"
 
     const listedItems = vehicleOptions.map(vehicleOption => {
-        return `<li>
+        return `<li class="vehicleOptions__option">
             <input type="radio" name="vehicleOption" value="${vehicleOption.id}" /> ${vehicleOption.vehicleType}
         </li>`
     })
